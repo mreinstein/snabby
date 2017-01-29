@@ -1,9 +1,31 @@
 var snabby = require('./')()
+var h = require('snabbdom/h').default
+var test = require('tape')
 
-var foo = snabby`<div>Hello world</div>`
+test('vnode', function (t) {
+  t.plan(2)
 
-snabby.update(document.body, foo)
+  t.same(
+    snabby`<span>Hello world!</span>`,
+    h('span', ['Hello world!']),
+    'singular'
+  )
 
-var bar = snabby`<div>Hello Mars</div>`
+  // t.same(
+  //   snabby`
+  //     <div>
+  //       <span>Hello</span>
+  //       <span>world!<span>(You're awesome)</span></span>
+  //     </div>
+  //   `,
+  //   h('div', [
+  //     h('span', ['Hello']),
+  //     h('span', [
+  //       'world!',
+  //       h('span', ['(You\'re awesome)'])
+  //     ])
+  //   ]),
+  //   'nested'
+  // )
 
-snabby.update(foo, bar)
+})
