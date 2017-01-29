@@ -17,7 +17,7 @@ function init (modules) {
   }
 
   // Create snabbdom patch function
-  var patch = snabbdom.init(modules)
+  var patch = snabbdom.init(modules || [])
 
   // The template string tag
   var snabby = _create.bind(create)
