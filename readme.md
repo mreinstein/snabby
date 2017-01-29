@@ -1,7 +1,7 @@
 
 # snabby
 
-> Snabbdom vnodes using template strings
+> Create Snabbdom virtual nodes using template strings
 
 ```js
 var snabby = require('snabby')([ ...modules ])
@@ -23,7 +23,6 @@ Snabby is for creating [Snabbdom](https://github.com/snabbdom/snabbdom) [virtual
 
 ```sh
 $ npm install --save snabby
-
 # With Yarn:
 $ yarn add snabby
 ```
