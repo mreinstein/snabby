@@ -19,13 +19,13 @@ function init (modules) {
   // Create snabbdom patch function
   var patch = snabbdom.init(modules || [])
 
-  // The template string tag
-  var snabby = _create.bind(create)
+  // Create template tag function
+  var snabby = _create.bind(null)
 
-  // Update function, like `yo.update`
+  // Create update function (like `yo.update`)
   snabby.update = function update (dest, src, opts) {
     if (opts && typeof opts.events !== 'undefined') {
-      throw new Error('snabby/snabbdom, unlike yo-yo, inits with options.')
+      throw new Error('snabbdom and snabby, unlike yo-yo, init with options')
     }
 
     return patch(dest, src)
