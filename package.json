@@ -1,6 +1,6 @@
 {
   "name": "snabby",
-  "description": "Create and patch Snabbdom nodes using template strings",
+  "description": "Snabbdom vnodes using template strings",
   "version": "0.0.0",
   "homepage": "https://github.com/jamen/snabby",
   "author": "Jamen Marz (https://git.io/jamen)",

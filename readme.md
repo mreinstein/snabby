@@ -1,41 +1,45 @@
 
 # snabby
 
-> Create and patch Snabbdom nodes using template strings
+> Snabbdom vnodes using template strings
 
 ```js
 var snabby = require('snabby')([ ...modules ])
 
-// Patch to DOM node:
+// Create vnodes:
 var foo = snabby`<div>Hello Earth</div>`
+var bar = snabby`<div>Hello Mars</div>`
+
+// Patch to DOM node:
 snabby.update(document.body, foo)
 
-// Patch update to vnode:
-var bar = snabby`<div>Hello Mars</div>`
+// Patch update:
 snabby.update(foo, bar)
 ```
 
-Inspired by [`yo-yo`](https://npmjs.com/yo-yo) and [`hyperx`](https://npmjs.com/hyperx).  Snabby is similar enough with `yo-yo` to be able to replace it most of the time; although, it is not fully compatible. See [Compatibility](#compatibility) for specifics.
+Snabby is for creating [Snabbdom](https://github.com/snabbdom/snabbdom) [virtual nodes](https://github.com/snabbdom/snabbdom#virtual-node) using template strings.  You can also patch the nodes using an [`update` function](#snabby_update) similar to how [`yo-yo`](https://npmjs.com/yo-yo) does it.  It makes working with an [amazing virtual dom](https://github.com/snabbdom/snabbdom#features) very easy and fun
 
 ## Installation
 
 ```sh
 $ npm install --save snabby
+
+# With Yarn:
+$ yarn add snabby
 ```
 
 ## Usage
 
-### `init(modules)`
+### `require('snabby')(modules)`
 
-Create a [`snabby` tag function](#snabby_tag) with an array of [Snabbdom modules](https://github.com/snabbdom/snabbdom#modules-documentation) or strings of default Snabbdom module names (e.g. `'class', 'style', 'eventlisteners'`).  You will probably just want to execute this function right as you require `snabby`:
+Initialize `snabby` with an array of [Snabbdom modules](https://github.com/snabbdom/snabbdom#modules-documentation).  Defaults modules (e.g. `style` or `props`) expand to their associated `snabbdom/modules/*` file for convenience
 
 ```js
 var snabby = require('snabby')([
-  // Typical Snabbdom module:
-  require('snabbdom-thing'),
-
-  // Modules in `snabbdom/modules/*`:
-  'eventlisteners',
+  // Snabbdom modules:
+  require('snabbdom-foo'),
+  require('snabbdom-bar'),
+  // Default shortcuts:
   'style',
   'props'
 ])
@@ -44,7 +48,7 @@ var snabby = require('snabby')([
 <a name='snabby_tag'></a>
 ### `snabby`
 
-A template string tag for creating [Snabbdom vnodes](https://github.com/snabbdom/snabbdom#virtual-node).  It is [`hyperx`](https://npmjs.com/hyperx) combined with [`snabbdom/h`](https://github.com/snabbdom/snabbdom#snabbdomh).
+A template string tag for creating [Snabbdom vnodes](https://github.com/snabbdom/snabbdom#virtual-node).  It is simply  [`snabbdom/h`](https://github.com/snabbdom/snabbdom#snabbdomh) combined with [`hyperx`](https://npmjs.com/hyperx) for creating them using template string syntax
 
 ```js
 var foo = snabby`
@@ -58,9 +62,10 @@ var foo = snabby`
 `
 ```
 
+<a name='snabby_update'></a>
 ### `snabby.update(destination, source)`
 
-Patch a vnode to the DOM, or to another vnodes.  See [Snabbdom's `patch`](https://github.com/snabbdom/snabbdom#patch) for more information on the process.  It is nearly the same as [`yo.update`](https://github.com/maxogden/yo-yo#youpdatetargetelement-newelement-opts), making it somewhat compatible.
+Patch vnodes to the DOM, or patch updates.  See [Snabbdom's `patch`](https://github.com/snabbdom/snabbdom#patch) for more information on the process.  It is nearly the same as [`yo.update`](https://github.com/maxogden/yo-yo#youpdatetargetelement-newelement-opts)'s usage, making it mostly compatible
 
 ```js
 // Create two vnodes:
@@ -76,19 +81,26 @@ snabby.update(foo, bar)
 
 ## Compatibility
 
-If you use [`snabby.update` on a DOM node first](https://github.com/snabbdom/snabbdom#patch) and never use [`opts.events`](https://github.com/maxogden/yo-yo#youpdatetargetelement-newelement-opts) (which is probably majority of cases), then you have compatible APIs.
+If you use [`snabby.update` on a DOM node first](https://github.com/snabbdom/snabbdom#patch) and never use [`yo.update`'s `opts.events`](https://github.com/maxogden/yo-yo#youpdatetargetelement-newelement-opts) (which is probably the majority), then you have mostly compatible usages
 
-Just in case, here is a list of some drawbacks:
+Just in case, here is a list of some known differences:
 
- - `snabby` has an `init` function, while `yo-yo` can be used straight from being required.
- - `yo.update`'s `opts.events` is not supported, because `snabbdom` preloads modules, and doesn't take options while patching.
- - `snabby.update`'s "call order" follows [`snabbdom`'s `patch`](https://github.com/snabbdom/snabbdom#patch), which can lead to slightly confusing errors compared to `yo-yo`.
- - `snabby` possibly contains extra functions that would make extra work transitioning to `yo-yo`.
- - The "updating" and "patching" terms differ which might be confusing.  They are used interchangably in this project.
+ - `yo.update`'s `opts.events` is not supported, because `snabbdom` uses a difference module process, and doesn't take options while updating.
+ - `snabby.update`'s "call order" follows [`snabbdom`'s `patch`](https://github.com/snabbdom/snabbdom#patch), which can lead to slightly confusing errors compared to `yo-yo`
+ - `snabby` possibly contains extra functions that would make extra work transitioning to `yo-yo`, but not really the other way around
+ - `snabby` module is initialized, while `yo-yo` can be used straight from being required
+ - "Updating" is from `yo-yo` and "patching" is from `snabbdom` which might be confusing.  They are used interchangably in this project
 
 ## Prior Art
 
-All of these ideas come from my time using: [`yo-yo`](https://npmjs.com/yo-yo), [`hyperx`](https://npmjs.com/hyperx), [`choo`](https://npmjs.com/choo), [`bel`](https://npmjs.com/bel), [`vue`](https://npmjs.com/vue), and of course [`snabbdom`](https://npmjs.com/snabbdom).  Check them out, they are cool!
+These ideas come from my time using:
+
+ - [`yo-yo`](https://npmjs.com/yo-yo): A module I've used and enjoyed, and inspired the API here
+ - [`hyperx`](https://npmjs.com/hyperx): A fantastic module that pretty much does all the hard work for me!
+ - [`choo`](https://npmjs.com/choo): What inspired me to create this module, as I love the API, but not `morphdom` as much
+ - [`bel`](https://npmjs.com/bel):  Notable mention.  It's like twin sister to this. DOM and VDOM
+  - [`snabbdom`](https://npmjs.com/snabbdom): An amazing virtual DOM.  Get on reading that README boi!
+ - [`vue`](https://npmjs.com/vue): A front-end framework that uses `snabbdom` and loosely inspired me
 
 ## License
 
