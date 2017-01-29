@@ -79,18 +79,6 @@ snabby.update(document.body, foo)
 snabby.update(foo, bar)
 ```
 
-## Compatibility
-
-If you use [`snabby.update` on a DOM node first](https://github.com/snabbdom/snabbdom#patch) and never use [`yo.update`'s `opts.events`](https://github.com/maxogden/yo-yo#youpdatetargetelement-newelement-opts) (which is probably the majority), then you have mostly compatible usages
-
-Just in case, here is a list of some known differences:
-
- - `yo.update`'s `opts.events` is not supported, because `snabbdom` uses a difference module process, and doesn't take options while updating.
- - `snabby.update`'s "call order" follows [`snabbdom`'s `patch`](https://github.com/snabbdom/snabbdom#patch), which can lead to slightly confusing errors compared to `yo-yo`
- - `snabby` possibly contains extra functions that would make extra work transitioning to `yo-yo`, but not really the other way around
- - `snabby` module is initialized, while `yo-yo` can be used straight from being required
- - "Updating" is from `yo-yo` and "patching" is from `snabbdom` which might be confusing.  They are used interchangably in this project
-
 ## Prior Art
 
 These ideas come from my time using:
@@ -99,7 +87,7 @@ These ideas come from my time using:
  - [`hyperx`](https://npmjs.com/hyperx): A fantastic module that pretty much does all the hard work for me!
  - [`choo`](https://npmjs.com/choo): What inspired me to create this module, as I love the API, but not `morphdom` as much
  - [`bel`](https://npmjs.com/bel):  Notable mention.  It's like twin sister to this. DOM and VDOM
-  - [`snabbdom`](https://npmjs.com/snabbdom): An amazing virtual DOM.  Get on reading that README boi!
+ - [`snabbdom`](https://npmjs.com/snabbdom): An amazing virtual DOM.  Get on reading that README boi!
  - [`vue`](https://npmjs.com/vue): A front-end framework that uses `snabbdom` and loosely inspired me
 
 ## License
