@@ -3,7 +3,7 @@ var h = require('snabbdom/h').default
 var test = require('tape')
 
 test('vnode', function (t) {
-  t.plan(2)
+  t.plan(1)
 
   t.same(
     snabby`<span>Hello world!</span>`,
