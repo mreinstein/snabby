@@ -61,7 +61,7 @@ console.log(snabby`
 `)
 ```
 
-tart an attribute with an `s-*` to use Snabbdom module properties. e.g. using the `eventlisteners` module:
+Start an attribute with an `s-` to use Snabbdom module properties.  Example using the `eventlisteners` module:
 
 ```js
 snabby`
