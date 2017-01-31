@@ -50,13 +50,33 @@ var snabby = require('snabby')([
 A template string tag for creating [Snabbdom vnodes](https://github.com/snabbdom/snabbdom#virtual-node).  It is simply  [`snabbdom/h`](https://github.com/snabbdom/snabbdom#snabbdomh) combined with [`hyperx`](https://npmjs.com/hyperx) for creating them using template string syntax
 
 ```js
-var foo = snabby`
+console.log(snabby`
   <div>
     <p>
       Hello <span>World</span>! <br>
       How are you today?
     </p>
     <p>I'm a planet, stop talking to me</p>
+  </div>
+`)
+```
+
+tart an attribute with an `s-*` to use Snabbdom module properties. e.g. using the `eventlisteners` module:
+
+```js
+snabby`
+  <div s-on=${{ click: e => ... }}>
+    ...
+  </div>
+`
+```
+
+You can also use a `:` to add properties to an object, instead of setting a singular value:
+
+```js
+snabby`
+  <div s-on:click=${e => ...}>
+    ...
   </div>
 `
 ```

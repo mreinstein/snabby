@@ -1,8 +1,8 @@
-var snabby = require('./')()
+var snabby = require('./')([ 'eventlisteners' ])
 var h = require('snabbdom/h').default
 var test = require('tape')
 
-test('vnode', function (t) {
+test.skip('vnode', function (t) {
   t.plan(1)
 
   t.same(
@@ -29,3 +29,10 @@ test('vnode', function (t) {
   // )
 
 })
+
+console.log(snabby`
+  <span
+    contenteditable='true'
+    s-hook:insert=${function (e) {}}
+  >Hello world</span>
+`)
