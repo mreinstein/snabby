@@ -47,10 +47,10 @@ var snabby = require('snabby')([
 <a name='snabby_tag'></a>
 ### `snabby`
 
-A template string tag for creating [Snabbdom vnodes](https://github.com/snabbdom/snabbdom#virtual-node).  It is simply  [`snabbdom/h`](https://github.com/snabbdom/snabbdom#snabbdomh) combined with [`hyperx`](https://npmjs.com/hyperx) for creating them using template string syntax
+A template string tag for creating [virtual nodes](https://github.com/snabbdom/snabbdom#virtual-node).
 
 ```js
-console.log(snabby`
+snabby`
   <div>
     <p>
       Hello <span>World</span>! <br>
@@ -58,33 +58,36 @@ console.log(snabby`
     </p>
     <p>I'm a planet, stop talking to me</p>
   </div>
-`)
-```
-
-Start an attribute with an `s-` to use Snabbdom module properties.  Example using the `eventlisteners` module:
-
-```js
-snabby`
-  <div s-on=${{ click: e => ... }}>
-    ...
-  </div>
 `
 ```
 
-You can also use a `:` to add properties to an object, instead of setting a singular value:
+Attributes starting with `@` control snabbdom modules.  You can use `:` inbetween to add properties.
+
+Example with the `eventlisteners` module:
 
 ```js
 snabby`
-  <div s-on:click=${e => ...}>
-    ...
-  </div>
+  <div @on=${{ click: e => ... }}>...</div>
+`
+
+// Adding a prop with:
+snabby`
+  <div @on:click=${e => ...}>...</div>
+`
+```
+
+In the case of `eventlisteners`, you can use a shorthand by just starting with `:`
+
+```js
+snabby`
+  <div :click=${e => ...}>...</div>
 `
 ```
 
 <a name='snabby_update'></a>
-### `snabby.update(destination, source)`
+### `snabby.update(dest, src)`
 
-Patch vnodes to the DOM, or patch updates.  See [Snabbdom's `patch`](https://github.com/snabbdom/snabbdom#patch) for more information on the process.  It is nearly the same as [`yo.update`](https://github.com/maxogden/yo-yo#youpdatetargetelement-newelement-opts)'s usage, making it mostly compatible
+Patch updates to virtual nodes, or patch them to a DOM node.  See [Snabbdom's `patch`](https://github.com/snabbdom/snabbdom#patch) for more info on the process.  Usage is nearly the same as [`yo.update`](https://github.com/maxogden/yo-yo#youpdatetargetelement-newelement-opts)
 
 ```js
 // Create two vnodes:

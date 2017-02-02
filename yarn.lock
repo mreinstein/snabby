@@ -94,6 +94,12 @@ hyperx@^2.0.5:
   dependencies:
     hyperscript-attribute-to-property "^1.0.0"
 
+hyperx@jamen/hyperx:
+  version "2.0.5"
+  resolved "https://codeload.github.com/jamen/hyperx/tar.gz/ddf5471fb3338cd8312a104bbd975b636c6fcde3"
+  dependencies:
+    hyperscript-attribute-to-property "^1.0.0"
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
