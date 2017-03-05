@@ -1,25 +1,23 @@
-var snabby = require('../../')([ 'eventlisteners' ])
+var html = require('../../')
 
 function counter (count) {
-  var view = snabby`
+  var view = html`
     <div class='main'>
-      <button :click=${add}>Add</button>
+      <button :click=${add}>+</button>
       <span>${count}</span>
-      <button :click=${sub}>Sub</button>
+      <button :click=${sub}>-</button>
     </div>
   `
 
   function add () {
-    snabby.update(view, counter(count + 1))
+    html.update(view, counter(count + 1))
   }
 
   function sub () {
-    snabby.update(view, counter(count - 1))
+    html.update(view, counter(count - 1))
   }
 
   return view
 }
 
-window.onload = function () {
-  snabby.update(document.body, counter(0))
-}
+html.update(document.body, counter(0))

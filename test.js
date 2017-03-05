@@ -1,4 +1,4 @@
-var snabby = require('./')([ 'eventlisteners' ])
+var snabby = require('./')
 var h = require('snabbdom/h').default
 var test = require('tape')
 
@@ -40,5 +40,15 @@ test('event listeners', function (t) {
     snabby`<span :click=${sample} :keydown=${sample2}>`.data.on,
     { click: sample, keydown: sample2 },
     'shorthand listeners'
+  )
+})
+
+test('class attribute', function (t) {
+  t.plan(1)
+
+  t.is(
+    snabby`<span class='foo'>Hello world</span>`.sel,
+    'span.foo',
+    'adds class selector'
   )
 })

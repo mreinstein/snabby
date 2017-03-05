@@ -1,0 +1,15 @@
+{
+  "name": "text-input",
+  "description": "Handling text input",
+  "version": "0.0.0",
+  "author": "Jamen Marz (https://git.io/jamen)",
+  "license": "MIT",
+  "scripts": {
+    "start": "budo index.js -- -t sheetify/transform -t es2040"
+  },
+  "dependencies": {
+    "budo": "^9.4.7",
+    "es2040": "^1.2.4",
+    "sheetify": "^6.0.1"
+  }
+}
