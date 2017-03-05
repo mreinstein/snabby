@@ -53,6 +53,8 @@ function _create (sel, input, content) {
   var data = {}
   for (var i = 0, max = names.length; max > i; i++) {
     var name = names[i]
+
+    // Directive attributes
     if (name[0] === '@') {
       var parts = name.slice(1).split(':')
       var previous = data
@@ -66,10 +68,20 @@ function _create (sel, input, content) {
           previous = previous[part]
         }
       }
-    } else if (name[0] === ':') {
+    }
+
+    // Shorthand `@on:foo` directive as `:foo`
+    else if (name[0] === ':') {
       if (!data.on) data.on = {}
       data.on[name.slice(1)] = input[name]
-    } else {
+    }
+
+    // Handle `class` attribute normally:
+    else if (name === 'className')
+      sel += '.' + input[name]
+
+    // Put all other attributes into `data.attrs`
+    else {
       if (!data.attrs) data.attrs = {}
       data.attrs[name] = input[name]
     }
