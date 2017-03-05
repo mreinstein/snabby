@@ -10,7 +10,8 @@
   },
   "license": "MIT",
   "files": [
-    "index.js"
+    "index.js",
+    "create.js"
   ],
   "main": "index.js",
   "engines": {
