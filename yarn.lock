@@ -88,15 +88,9 @@ hyperscript-attribute-to-property@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hyperscript-attribute-to-property/-/hyperscript-attribute-to-property-1.0.0.tgz#825308d49bb8e2957923f731981bcc811cad7aff"
 
-hyperx@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/hyperx/-/hyperx-2.0.5.tgz#fedef890d7203f36339b243b27d38e3a424225ab"
-  dependencies:
-    hyperscript-attribute-to-property "^1.0.0"
-
-hyperx@jamen/hyperx:
-  version "2.0.5"
-  resolved "https://codeload.github.com/jamen/hyperx/tar.gz/ddf5471fb3338cd8312a104bbd975b636c6fcde3"
+hyperx@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/hyperx/-/hyperx-2.3.0.tgz#70f473d66d4ad550ddd1c83e4be2651276bbf1e2"
   dependencies:
     hyperscript-attribute-to-property "^1.0.0"
 

@@ -37,7 +37,7 @@
     "virtual-dom"
   ],
   "dependencies": {
-    "hyperx": "jamen/hyperx",
+    "hyperx": "^2.3.0",
     "snabbdom": "^0.6.3"
   }
 }
