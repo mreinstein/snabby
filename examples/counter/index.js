@@ -3,9 +3,9 @@ var html = require('../../')
 function counter (count) {
   var view = html`
     <div class='main'>
-      <button :click=${add}>+</button>
+      <button @on:click=${add}>+</button>
       <span>${count}</span>
-      <button :click=${sub}>-</button>
+      <button @on:click=${sub}>-</button>
     </div>
   `
 

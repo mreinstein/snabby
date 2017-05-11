@@ -21,8 +21,8 @@ function app (state) {
       <div class='app-title'>${ state.title }</div>
       <div class='app-desc'>${ state.desc }</div>
       <div class='app-inputs'>
-        <span>Title: </span><input :input=${title} /><br />
-        <span>Description: </span><input :input=${desc} />
+        <span>Title: </span><input @on:input=${title} /><br />
+        <span>Description: </span><input @on:input=${desc} />
       </div>
     </div>
   `
