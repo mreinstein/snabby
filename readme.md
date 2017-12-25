@@ -23,8 +23,6 @@ Snabby is for creating [Snabbdom](https://github.com/snabbdom/snabbdom) [virtual
 
 ```sh
 $ npm install --save snabby
-# With Yarn:
-$ yarn add snabby
 ```
 
 ## Usage

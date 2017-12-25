@@ -2,42 +2,26 @@
   "name": "snabby",
   "description": "Use Snabbdom with template strings",
   "version": "0.2.0",
-  "homepage": "https://github.com/jamen/snabby",
   "author": "Jamen Marz (https://git.io/jamen)",
   "repository": "jamen/snabby",
-  "bugs": {
-    "url": "https://github.com/jamen/snabby/issues"
-  },
+  "main": "index.js",
   "license": "MIT",
   "files": [
     "index.js",
     "create.js"
   ],
-  "main": "index.js",
-  "engines": {
-    "node": ">=4"
-  },
   "scripts": {
     "test": "node test"
   },
   "devDependencies": {
     "tape": "^4.6.3"
   },
-  "keywords": [
-    "jamen",
-    "snabby",
-    "snabbdom",
-    "template",
-    "string",
-    "hyperx",
-    "yo-yo",
-    "vdom",
-    "virtual",
-    "dom",
-    "virtual-dom"
-  ],
   "dependencies": {
     "hyperx": "^2.3.0",
     "snabbdom": "^0.6.3"
+  },
+  "homepage": "https://github.com/jamen/snabby",
+  "bugs": {
+    "url": "https://github.com/jamen/snabby/issues"
   }
 }
