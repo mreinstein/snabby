@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "hyperx": "^2.3.0",
-    "snabbdom": "^0.6.3"
+    "snabbdom": "^0.7.1"
   },
   "homepage": "https://github.com/jamen/snabby",
   "bugs": {
