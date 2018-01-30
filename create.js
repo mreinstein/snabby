@@ -8,7 +8,7 @@ function create (modules, options) {
   if (!options) options = {}
 
   // options
-  const directive = options.directive || '@'
+  var directive = options.directive || '@'
 
   function createElement (sel, input, content) {
     // Adjust content:
