@@ -31,7 +31,7 @@ function create (modules, options) {
       }
 
       // Directive attributes
-      if (name[0] === directive) {
+      if (name.indexOf(directive) === 0) {
         var parts = name.slice(1).split(':')
         var previous = data
         for (var p = 0, pmax = parts.length, last = pmax - 1; p < pmax; p++) {
