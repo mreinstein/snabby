@@ -31,6 +31,9 @@ function create (modules, options) {
     var data = {}
     for (var i = 0, max = names.length; max > i; i++) {
       var name = names[i]
+      if (input[name] === 'false') {
+        input[name] = false
+      }
 
       // Directive attributes
       if (name.indexOf(directive) === 0) {
