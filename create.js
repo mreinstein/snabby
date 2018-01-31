@@ -26,9 +26,12 @@ function create (modules, options) {
     var data = {}
     for (var i = 0, max = names.length; max > i; i++) {
       var name = names[i]
+      if (input[name] === 'false') {
+        input[name] = false
+      }
 
       // Directive attributes
-      if (name.indexOf(directive) === 0) {
+      if (name[0] === directive) {
         var parts = name.slice(1).split(':')
         var previous = data
         for (var p = 0, pmax = parts.length, last = pmax - 1; p < pmax; p++) {

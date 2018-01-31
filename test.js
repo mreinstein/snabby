@@ -54,3 +54,13 @@ test('class attribute', function (t) {
     'adds class selector'
   )
 })
+
+test('non-string attribute value', function (t) {
+  t.plan(1)
+  console.log(snabby`<input @class:x=${false}>`)
+  t.is(
+    snabby`<input @class:x=${false}>`.data.class.x,
+    false,
+    'sets a prop to the real false value, not a string'
+  )
+})
