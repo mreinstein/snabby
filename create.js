@@ -8,12 +8,17 @@ function create (modules, options) {
   if (!options) options = {}
 
   // options
-  const directive = options.directive || '@'
+  var directive = options.directive || '@'
 
   function createElement (sel, input, content) {
     // Adjust content:
-    if (content && content.length === 1) {
-      content = content[0]
+    if (content && content.length) {
+      if (content.length === 1) {
+        content = content[0]
+      } else {
+        // Flatten nested arrays
+        content = [].concat.apply([], content)
+      }
     }
 
     // Attribute names, and handling none faster:

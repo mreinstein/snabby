@@ -57,10 +57,22 @@ test('class attribute', function (t) {
 
 test('non-string attribute value', function (t) {
   t.plan(1)
-  console.log(snabby`<input @class:x=${false}>`)
   t.is(
     snabby`<input @class:x=${false}>`.data.class.x,
     false,
     'sets a prop to the real false value, not a string'
+  )
+})
+
+test('flatten array children', function (t) {
+  t.plan(1)
+  var arr = [
+    snabby`<span>1</span>`,
+    snabby`<span>2</span>`,
+  ]
+  t.is(
+    snabby`<span> ${arr} ${arr} </span>`.children.length,
+    7,
+    'flattens nested arrays'
   )
 })
