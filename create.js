@@ -12,8 +12,13 @@ function create (modules, options) {
 
   function createElement (sel, input, content) {
     // Adjust content:
-    if (content && content.length === 1) {
-      content = content[0]
+    if (content && content.length) {
+      if (content.length === 1) {
+        content = content[0]
+      } else {
+        // Flatten nested arrays
+        content = [].concat.apply([], content)
+      }
     }
 
     // Attribute names, and handling none faster:
