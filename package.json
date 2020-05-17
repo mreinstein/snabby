@@ -8,7 +8,8 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "create.js"
+    "create.js",
+    "snabby.js"
   ],
   "scripts": {
     "build-esm": "rollup -c rollup.config.js --format es -o snabby.js index.js",
