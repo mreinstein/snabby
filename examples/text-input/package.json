@@ -3,6 +3,7 @@
   "description": "Handling text input",
   "version": "0.0.0",
   "author": "Jamen Marz (https://git.io/jamen)",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "start": "budo index.js -- -t sheetify/transform -t es2040"

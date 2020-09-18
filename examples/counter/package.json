@@ -3,6 +3,7 @@
   "description": "An example counter using snabby",
   "version": "0.0.0",
   "author": "Jamen Marz (https://git.io/jamen)",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "start": "budo index.js -t es2040"
