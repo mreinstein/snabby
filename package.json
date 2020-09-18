@@ -3,7 +3,7 @@
   "description": "Use Snabbdom with template strings",
   "version": "1.2.0",
   "author": "Jamen Marz (https://git.io/jamen)",
-  "repository": "jamen/snabby",
+  "repository": "mreinstein/snabby",
   "main": "index.js",
   "license": "MIT",
   "files": [
@@ -27,8 +27,8 @@
     "hyperx": "^2.3.0",
     "snabbdom": "^0.7.1"
   },
-  "homepage": "https://github.com/jamen/snabby",
+  "homepage": "https://github.com/mreinstein/snabby",
   "bugs": {
-    "url": "https://github.com/jamen/snabby/issues"
+    "url": "https://github.com/mreinstein/snabby/issues"
   }
 }
