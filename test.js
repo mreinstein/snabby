@@ -1,6 +1,11 @@
-var snabby = require('./')
-var h = require('snabbdom/h').default
-var test = require('tape')
+var browserEnv = require('browser-env');
+var snabby = require('./index.js')
+var h      = require('snabbdom/h').default
+var test   = require('tape')
+
+
+browserEnv()
+
 
 test('creation', function (t) {
   t.plan(2)
@@ -17,6 +22,7 @@ test('creation', function (t) {
     'nested nodes'
   )
 })
+
 
 test('event listeners', function (t) {
   t.plan(2)
@@ -43,6 +49,7 @@ test('event listeners', function (t) {
  // )
 })
 
+
 test('class attribute', function (t) {
   t.plan(1)
 
@@ -55,6 +62,7 @@ test('class attribute', function (t) {
   )
 })
 
+
 test('non-string attribute value', function (t) {
   t.plan(1)
   t.is(
@@ -63,6 +71,7 @@ test('non-string attribute value', function (t) {
     'sets a prop to the real false value, not a string'
   )
 })
+
 
 test('flatten array children', function (t) {
   t.plan(1)
@@ -75,4 +84,28 @@ test('flatten array children', function (t) {
     7,
     'flattens nested arrays'
   )
+})
+
+
+test('thunk', function (t) {
+  t.plan(4)
+
+  var invocationCount = 0
+
+  var numberView = function (n) {
+    invocationCount += 1
+    return snabby`<span>Number is ${n}</span>`
+  }
+
+  t.same(invocationCount, 0)
+
+  var view = snabby.update(document.body, snabby`<div>${snabby.thunk('num', numberView, [1])}</div>`)
+  t.same(invocationCount, 1)
+
+  view = snabby.update(view, snabby`<div>${snabby.thunk('num', numberView, [1])}</div>`)
+  t.same(invocationCount, 1)
+
+  view = snabby.update(view, snabby`<div>${snabby.thunk('num', numberView, [4])}</div>`)
+  t.same(invocationCount, 2)
+
 })

@@ -19,11 +19,13 @@ html.update(foo, bar)
 
 Snabby is for creating [Snabbdom](https://github.com/snabbdom/snabbdom) [virtual nodes](https://github.com/snabbdom/snabbdom#virtual-node) using template strings, and also patch the nodes using an [`update` function](#snabby_update) (inspired by [`yo-yo`](https://npmjs.com/yo-yo)).  It makes working with an [amazing virtual dom](https://github.com/snabbdom/snabbdom#features) very easy and fun
 
+
 ## Installation
 
 ```sh
 $ npm install --save snabby
 ```
+
 
 ## Usage
 
@@ -48,6 +50,7 @@ var node2 = greet('World')
 
 You have all the [modules documented by Snabbdom](https://github.com/snabbdom/snabbdom#modules-documentation) loaded by default.  See [Directives](#directives) for how to use modules, and [`snabby/create`](#snabby_create) for loading custom modules
 
+
 ### Directives
 
 Directives are attributes that begin with `@`, and let you interact with Snabbdom modules.  In general, the form is `@<name>:[prop]:...`.
@@ -71,6 +74,7 @@ html`<div :click=${fn}>`
 ```
 
 Directives work with any module that makes use of `node.data`.  For example `@props:href` turns into `node.data.props.href`.
+
 
 ### `snabby.update(target, node)`
 
@@ -102,6 +106,7 @@ html.update(node1, node2)
 // Hello, TRAPPIST-1!
 ```
 
+
 ### `snabby/create`
 
 Create a `snabby` tag function with your own modules.
@@ -120,6 +125,39 @@ var html = require('snabby/create')([
 
 As mentioned, you can use directives with 3rd party modules fine.  Open an issue if you can't!
 
+
+### `snabby.thunk(selector, key, renderFn, [stateArguments])`
+
+The `thunk` function takes a selector, a key for identifying a thunk, a function that returns a vnode and a variable amount of state parameters. If invoked, the render function will receive the state arguments.
+
+The `renderFn` is invoked only if the `renderFn` is changed or `[stateArguments]` array length or it's elements are changed.
+
+
+```js
+function counter (count) {
+
+    function numberView (n) {
+        return html`<span>Number is ${n}</span>`
+    }
+
+    function rand () {
+        const randomInt = Math.ceil(Math.random() * 3)
+        html.update(view, counter(randomInt))
+    }
+
+    const view = html`
+        <div class='main'>
+          <span>${html.thunk('num', numberView, [count])}</span>
+          <button @on:click=${rand}>random</button>
+        </div>`
+}
+
+```
+
+This is identical to snabbdom's `thunk` function. See https://github.com/snabbdom/snabbdom#thunks for more details.
+
+
+
 ## Prior Art
 
 These ideas come from my time using:
@@ -130,6 +168,7 @@ These ideas come from my time using:
  - [`bel`](https://npmjs.com/bel):  Notable mention.  It's like twin sister to this. DOM and VDOM
  - [`snabbdom`](https://npmjs.com/snabbdom): What gives this the speed
  - [`vue`](https://npmjs.com/vue): A front-end framework that uses `snabbdom` and loosely inspired me
+
 
 ## License
 

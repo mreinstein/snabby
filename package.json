@@ -16,6 +16,7 @@
     "test": "node test"
   },
   "devDependencies": {
+    "browser-env": "^3.3.0",
     "rollup": "^2.27.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",

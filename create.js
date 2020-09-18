@@ -1,6 +1,8 @@
 var snabbdom = require('snabbdom')
+var thunk = require('snabbdom/thunk').default
 var h = require('snabbdom/h').default
 var hyperx = require('hyperx')
+
 
 module.exports = create
 
@@ -72,6 +74,8 @@ function create (modules, options) {
   snabby.update = function update (dest, src) {
     return patch(dest, src)
   }
+
+  snabby.thunk = thunk
 
   return snabby
 }

@@ -574,6 +574,58 @@ exports.default = h;
 unwrapExports(h_1);
 var h_2 = h_1.h;
 
+var thunk$1 = createCommonjsModule(function (module, exports) {
+Object.defineProperty(exports, "__esModule", { value: true });
+
+function copyToThunk(vnode, thunk) {
+    thunk.elm = vnode.elm;
+    vnode.data.fn = thunk.data.fn;
+    vnode.data.args = thunk.data.args;
+    thunk.data = vnode.data;
+    thunk.children = vnode.children;
+    thunk.text = vnode.text;
+    thunk.elm = vnode.elm;
+}
+function init(thunk) {
+    var cur = thunk.data;
+    var vnode = cur.fn.apply(undefined, cur.args);
+    copyToThunk(vnode, thunk);
+}
+function prepatch(oldVnode, thunk) {
+    var i, old = oldVnode.data, cur = thunk.data;
+    var oldArgs = old.args, args = cur.args;
+    if (old.fn !== cur.fn || oldArgs.length !== args.length) {
+        copyToThunk(cur.fn.apply(undefined, args), thunk);
+        return;
+    }
+    for (i = 0; i < args.length; ++i) {
+        if (oldArgs[i] !== args[i]) {
+            copyToThunk(cur.fn.apply(undefined, args), thunk);
+            return;
+        }
+    }
+    copyToThunk(oldVnode, thunk);
+}
+exports.thunk = function thunk(sel, key, fn, args) {
+    if (args === undefined) {
+        args = fn;
+        fn = key;
+        key = undefined;
+    }
+    return h_1.h(sel, {
+        key: key,
+        hook: { init: init, prepatch: prepatch },
+        fn: fn,
+        args: args
+    });
+};
+exports.default = exports.thunk;
+
+});
+
+unwrapExports(thunk$1);
+var thunk_1 = thunk$1.thunk;
+
 var hyperscriptAttributeToProperty = attributeToProperty;
 
 var transform = {
@@ -884,7 +936,9 @@ var closeRE = RegExp('^(' + [
 ].join('|') + ')(?:[\.#][a-zA-Z0-9\u007F-\uFFFF_:-]+)*$');
 function selfClosing (tag) { return closeRE.test(tag) }
 
+var thunk$2 = thunk$1.default;
 var h$1 = h_1.default;
+
 
 
 var create_1 = create;
@@ -957,6 +1011,8 @@ function create (modules, options) {
   snabby.update = function update (dest, src) {
     return patch(dest, src)
   };
+
+  snabby.thunk = thunk$2;
 
   return snabby
 }
