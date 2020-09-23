@@ -4,7 +4,7 @@
 > Use Snabbdom with template strings
 
 ```js
-var html = require('snabby')
+import html from 'snabby'
 
 // Create vnodes:
 var foo = html`<div>Hello Earth</div>`
@@ -34,7 +34,7 @@ $ npm install --save snabby
 A [tag function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals) that creates a node.  This function is usually required as `html` instead of `snabby`:
 
 ```js
-var html = require('snabby')
+import html from 'snabby'
 
 // Function to create VNode from params:
 var greet = name => html`
@@ -83,7 +83,7 @@ If you want to put a node on the DOM, or push updates on it (i.e. from events), 
 First things first, the Node has to be mounted to the DOM, _before_ you try and update it:
 
 ```js
-var html = require('snabby')
+import html from 'snabby'
 
 var visit = location => html`
   <div class='app'>Hello, ${location}!</div>

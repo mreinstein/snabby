@@ -1,7 +1,7 @@
-var browserEnv = require('browser-env');
-var snabby = require('./index.js')
-var h      = require('snabbdom/h').default
-var test   = require('tape')
+import browserEnv from 'browser-env'
+import snabby     from './snabby.js'
+import { h }      from 'snabbdom/h' // helper function for creating vnodes
+import test       from 'tape'
 
 
 browserEnv()
@@ -75,7 +75,7 @@ test('non-string attribute value', function (t) {
 
 test('flatten array children', function (t) {
   t.plan(1)
-  var arr = [
+  const arr = [
     snabby`<span>1</span>`,
     snabby`<span>2</span>`,
   ]
@@ -90,16 +90,16 @@ test('flatten array children', function (t) {
 test('thunk', function (t) {
   t.plan(4)
 
-  var invocationCount = 0
+  let invocationCount = 0
 
-  var numberView = function (n) {
+  const numberView = function (n) {
     invocationCount += 1
     return snabby`<span>Number is ${n}</span>`
   }
 
   t.same(invocationCount, 0)
 
-  var view = snabby.update(document.body, snabby`<div>${snabby.thunk('num', numberView, [1])}</div>`)
+  let view = snabby.update(document.body, snabby`<div>${snabby.thunk('num', numberView, [1])}</div>`)
   t.same(invocationCount, 1)
 
   view = snabby.update(view, snabby`<div>${snabby.thunk('num', numberView, [1])}</div>`)
