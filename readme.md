@@ -1,7 +1,7 @@
 
 # snabby
 
-> Use Snabbdom with template strings
+Use Snabbdom with template strings
 
 ```js
 import html from 'snabby'
