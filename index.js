@@ -1,9 +1,17 @@
 // Inits with common modules out of the box
 // Also easier to use across multiple files
-module.exports = require('./create')([
-  require('snabbdom/modules/attributes').default,
-  require('snabbdom/modules/eventlisteners').default,
-  require('snabbdom/modules/class').default,
-  require('snabbdom/modules/props').default,
-  require('snabbdom/modules/style').default
+import create from './create.js'
+import { attributesModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/attributes.js';
+import { classModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/class.js';
+import { propsModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/props.js';
+import { styleModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/style.js';
+import { eventListenersModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/eventlisteners.js';
+
+
+export default create([
+    attributesModule,
+    eventListenersModule,
+    classModule,
+    propsModule,
+    styleModule
 ])

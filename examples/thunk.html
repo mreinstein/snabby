@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <title>Snabby - Thunk Example</title>
+    <meta name=theme-color content=#303F9F><meta name=viewport content="width=device-width,minimum-scale=1">
+    <style>
+        body {
+          font-family: monospace;
+          background-color: whitesmoke;
+          padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<p>
+For this example, take a look at the javascript console, and press the random button several times. 
+You'll notice that when the value that gets chosen matches the previous value, the "ACTUAL UPDATE" console message 
+doesn't fire. this is because the view hasn't changed, so the thunk doesn't re-evaluate the snabby dom vnode.
+</p>
+
+<script type="module">
+import html from '../snabby.js'
+
+
+function randomInt () {
+    return Math.ceil(Math.random() * 3)
+}
+
+
+function numberView (n) {
+    console.log('ACTUAL UPDATE:', n)
+    return html`<span>Number is ${n}</span>`
+}
+
+
+function counter (count) {
+    console.log('outer call:', count)
+    const view = html`
+        <div class="main">
+          <button @on:click=${sub}>-</button>
+          <span>${html.thunk('num', numberView, [count])}</span>
+          <button @on:click=${add}>+</button>
+          <button @on:click=${rand}>random</button>
+        </div>
+      `
+
+    function add () {
+        html.update(view, counter(count + 1))
+    }
+
+    function sub () {
+        html.update(view, counter(count - 1))
+    }
+
+    function rand () {
+        html.update(view, counter(randomInt()))
+    }
+
+    return view
+}
+
+
+html.update(document.body, counter(0))
+
+</script>
+
+</body>
+</html>

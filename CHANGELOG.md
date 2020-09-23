@@ -1,5 +1,12 @@
 # changelog
 
+## 2.0.0
+* require node v12.17+
+* update snabbdom from 0.7 to 2.1
+* convert to pure es module
+* simplify examples
+
+
 ## 1.2.0
 
 * add `thunk` support (fixes #5)

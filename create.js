@@ -1,76 +1,67 @@
-var snabbdom = require('snabbdom')
-var thunk = require('snabbdom/thunk').default
-var h = require('snabbdom/h').default
-var hyperx = require('hyperx')
+import { init }  from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/init.js';
+import { thunk } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/thunk.js';
+import { h }     from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/h.js'; // helper function for creating vnodes
+import hyperx    from 'hyperx'
 
 
-module.exports = create
+export default function create (modules, options={}) {
 
-function create (modules, options) {
-  if (!options) options = {}
-
-  // options
-  var directive = options.directive || '@'
+  const directive = options.directive || '@'
 
   function createElement (sel, input, content) {
-    // Adjust content:
     if (content && content.length) {
-      if (content.length === 1) {
+      if (content.length === 1)
         content = content[0]
-      } else {
-        // Flatten nested arrays
-        content = [].concat.apply([], content)
-      }
+      else
+        content = [].concat.apply([], content)  // flatten nested arrays
     }
 
-    // Attribute names, and handling none faster:
-    var names = Object.keys(input)
-    if (!names || !names.length) {
+    // attribute names, and handling none faster:
+    const names = Object.keys(input)
+    if (!names || !names.length)
       return h(sel, content)
-    }
 
-    // Parse Snabbdom's `data` from attributes:
-    var data = {}
-    for (var i = 0, max = names.length; max > i; i++) {
-      var name = names[i]
-      if (input[name] === 'false') {
+    // parse Snabbdom's `data` from attributes:
+    const data = { }
+    for (let i = 0, max = names.length; max > i; i++) {
+      const name = names[i]
+      if (input[name] === 'false')
         input[name] = false
-      }
 
-      // Directive attributes
+      // directive attributes
       if (name.indexOf(directive) === 0) {
-        var parts = name.slice(1).split(':')
-        var previous = data
-        for (var p = 0, pmax = parts.length, last = pmax - 1; p < pmax; p++) {
-          var part = parts[p]
-          if (p === last) {
+        const parts = name.slice(1).split(':')
+        let previous = data
+        for (let p = 0, pmax = parts.length, last = pmax - 1; p < pmax; p++) {
+          const part = parts[p]
+          if (p === last)
             previous[part] = input[name]
-          } else if (!previous[part]) {
-            previous = previous[part] = {}
-          } else {
+          else if (!previous[part])
+            previous = previous[part] = { }
+          else
             previous = previous[part]
-          }
         }
       }
 
-      // Put all other attributes into `data.attrs`
+      // put all other attributes into `data.attrs`
       else {
-        if (!data.attrs) data.attrs = {}
+        if (!data.attrs)
+          data.attrs = { }
         data.attrs[name] = input[name]
       }
     }
 
-    // Return vnode:
+    // return vnode:
     return h(sel, data, content)
   }
 
-  // Create the snabbdom + hyperx functions
-  var patch = snabbdom.init(modules || [])
+  // create the snabbdom + hyperx functions
+  const patch = init(modules || [ ])
   
-  // Create snabby function
-  var snabby = hyperx(createElement, { attrToProp: false })
+  // create snabby function
+  const snabby = hyperx(createElement, { attrToProp: false })
   
-  // Create yo-yo-like update function
+  // create yo-yo-like update function
   snabby.update = function update (dest, src) {
     return patch(dest, src)
   }
@@ -79,5 +70,3 @@ function create (modules, options) {
 
   return snabby
 }
-
-

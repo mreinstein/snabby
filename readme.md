@@ -1,14 +1,14 @@
 
 # snabby
 
-> Use Snabbdom with template strings
+Use Snabbdom with template strings
 
 ```js
-var html = require('snabby')
+import html from 'snabby'
 
 // Create vnodes:
-var foo = html`<div>Hello Earth</div>`
-var bar = html`<div>Hello Mars</div>`
+let foo = html`<div>Hello Earth</div>`
+let bar = html`<div>Hello Mars</div>`
 
 // Patch to DOM:
 html.update(document.body, foo)
@@ -22,9 +22,9 @@ Snabby is for creating [Snabbdom](https://github.com/snabbdom/snabbdom) [virtual
 
 ## Installation
 
-```sh
-$ npm install --save snabby
-```
+Snabby version 2.x is a pure es module. It requires node >= v12.17 or a browser that supports the es module format.
+
+If you want the older commonjs build, use the `snabby@1.x` npm module
 
 
 ## Usage
@@ -34,17 +34,17 @@ $ npm install --save snabby
 A [tag function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals) that creates a node.  This function is usually required as `html` instead of `snabby`:
 
 ```js
-var html = require('snabby')
+import html from 'snabby'
 
 // Function to create VNode from params:
-var greet = name => html`
+let greet = name => html`
   <div class='greet'>Hello, ${name}!</div>
 `
 
-var node1 = greet('Jamen')
+let node1 = greet('Jamen')
 // Hello, Jamen!
 
-var node2 = greet('World')
+let node2 = greet('World')
 // Hello, World!
 ```
 
@@ -83,13 +83,13 @@ If you want to put a node on the DOM, or push updates on it (i.e. from events), 
 First things first, the Node has to be mounted to the DOM, _before_ you try and update it:
 
 ```js
-var html = require('snabby')
+import html from 'snabby'
 
-var visit = location => html`
+let visit = location => html`
   <div class='app'>Hello, ${location}!</div>
 `
 
-var node1 = visit('Earth')
+let node1 = visit('Earth')
 
 // Mount node to DOM
 html.update(document.body, node1)
@@ -99,7 +99,7 @@ html.update(document.body, node1)
 From there, you can patch updates:
 
 ```js
-var node2 = visit('TRAPPIST-1')
+let node2 = visit('TRAPPIST-1')
 
 // Patch updates to node1
 html.update(node1, node2)
@@ -114,13 +114,20 @@ Create a `snabby` tag function with your own modules.
 Here is an equivalent to `snabby` for example:
 
 ```js
-var html = require('snabby/create')([
-  require('snabbdom/modules/attributes').default,
-  require('snabbdom/modules/eventlisteners').default,
-  require('snabbdom/modules/class').default,
-  require('snabbdom/modules/props').default,
-  require('snabbdom/modules/style').default
+import create from './create.js'
+import { classModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/class.js';
+import { propsModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/props.js';
+import { styleModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/style.js';
+import { eventListenersModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/eventlisteners.js';
+
+
+const html = create([
+    classModule,
+    propsModule,
+    styleModule,
+    eventListenersModule,
 ])
+
 ```
 
 As mentioned, you can use directives with 3rd party modules fine.  Open an issue if you can't!
