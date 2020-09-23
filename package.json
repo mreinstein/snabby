@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js --format es -o snabby.js index.js",
+    "prepublishOnly": "npm run build",
     "test": "node test"
   },
   "devDependencies": {
