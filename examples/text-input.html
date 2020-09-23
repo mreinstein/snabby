@@ -1,20 +1,40 @@
-const html = require('../../')
-const css = require('sheetify')
+<!doctype html>
+<html>
+<head>
+    <title>Snabby - Text Input Example</title>
+    <meta name=theme-color content=#303F9F><meta name=viewport content="width=device-width,minimum-scale=1">
+    <style>
+        body {
+          font-family: monospace;
+          background-color: whitesmoke;
+          padding: 10px;
+        }
+
+        .app-title {
+          font-size: 4em
+        }
+
+        .app-desc {
+          font-size: 1.5em
+        }
+
+        .app-inputs {
+          margin-top: 20px
+        }
+
+    </style>
+</head>
+<body>
+
+<p>
+
+</p>
+
+<script type="module">
+import html from '../snabby.js'
+
 
 function app (state) {
-  css`
-    .app-title {
-      font-size: 4em
-    }
-
-    .app-desc {
-      font-size: 1.5em
-    }
-
-    .app-inputs {
-      margin-top: 20px
-    }
-  `
 
   var view = html`
     <div class='app'>
@@ -48,3 +68,8 @@ html.update(document.body, app({
   title: 'Hello, World!',
   desc: 'People greet the world.'
 }))
+
+</script>
+
+</body>
+</html>

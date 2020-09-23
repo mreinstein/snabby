@@ -14,6 +14,7 @@
   ],
   "scripts": {
     "build": "rollup -c rollup.config.js --format es -o snabby.js index.js",
+    "examples": "serve .",
     "predeploy": "npm-run-all -s build test",
     "prepublishOnly": "npm run predeploy",
     "test": "node test"
@@ -26,6 +27,7 @@
     "npm-run-all": "^4.1.5",
     "rollup": "^2.28.1",
     "rollup-plugin-url-resolve": "^0.1.1",
+    "serve": "^11.3.2",
     "tape": "^5.0.0"
   },
   "dependencies": {
