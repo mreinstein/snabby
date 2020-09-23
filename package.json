@@ -29,6 +29,9 @@
     "hyperx": "^2.3.0",
     "snabbdom": "^2.1.0"
   },
+  "engines" : {
+    "node" : ">=12.17"
+  },
   "homepage": "https://github.com/mreinstein/snabby",
   "bugs": {
     "url": "https://github.com/mreinstein/snabby/issues"
