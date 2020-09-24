@@ -1,5 +1,9 @@
 # changelog
 
+## 2.0.1
+* fix the npm module to point at the built file
+
+
 ## 2.0.0
 * require node v12.17+
 * update snabbdom from 0.7 to 2.1

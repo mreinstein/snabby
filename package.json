@@ -1,11 +1,11 @@
 {
   "name": "snabby",
   "description": "Use Snabbdom with template strings",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Jamen Marz (https://git.io/jamen)",
   "repository": "mreinstein/snabby",
   "type": "module",
-  "main": "index.js",
+  "main": "snabby.js",
   "license": "MIT",
   "files": [
     "index.js",
