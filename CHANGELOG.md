@@ -1,5 +1,10 @@
 # changelog
 
+## 3.0.0
+* add container queries
+* update dependencies
+
+
 ## 2.0.1
 * fix the npm module to point at the built file
 
