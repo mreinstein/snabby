@@ -6,6 +6,7 @@ import { classModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/p
 import { propsModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/props.js';
 import { styleModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/style.js';
 import { eventListenersModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/eventlisteners.js';
+import containerQueryModule     from './snabbdom-containerquery.js';
 
 
 export default create([
@@ -13,5 +14,6 @@ export default create([
     eventListenersModule,
     classModule,
     propsModule,
-    styleModule
-])
+    styleModule,
+    containerQueryModule
+]);

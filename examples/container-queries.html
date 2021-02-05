@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Snabby Container Queries</title>
+        <style>
+
+          body {
+            padding: 40px;
+          }
+
+        	/* demo related styles */
+        	main {
+        		cursor: pointer;
+        		padding: 40px;
+        		user-select: none;
+        		background-color: lightgreen;
+        	}
+
+        	/* container query styles */
+        	.BP1 {
+        		background-color: dodgerblue;
+        	}
+
+        	.BP2 {
+        		background-color: deeppink;
+        	}
+
+        	.BP3 {
+        		background-color: orange;
+        	}
+        </style>
+    </head>
+    <body>
+    	<main></main>
+
+      <p>Inspect the main element in the dev console and resize the page. You'll see different classes being added/removed from the main tag based on the width the element is.</p>
+
+      <p>Clicking on the element will toggle the container queries on and off.</p>
+
+    	<script type="module">
+			  import html from '../snabby.js'
+  
+
+  			let currentVnode = document.querySelector('main');
+
+  			const model = {
+  				counter: 0
+  			};
+
+
+  			function view (model, update) {
+  				//const attrs = (model.counter % 2 === 0) ? { 'data-breakpoints': '{ "BP1":400,"BP2":600,"BP3":1200 }' } : { }
+          const brkpts = (model.counter % 2 === 0) ? '{ "BP1":400,"BP2":600,"BP3":1200 }' : ''
+
+          return html`<main class="noop"
+                            @attrs:data-breakpoints=${brkpts}
+                            @on:click=${() => { model.counter++; update(); }}>
+                        count: ${model.counter}
+                        <span style="padding-left: 20px; font-weight: bold">container queries: ${brkpts.length ? 'enabled' : 'disabled'}</span>
+                      </main>`;
+  			}
+
+  			function update () {
+  				const newVnode = view(model, update);
+  				currentVnode = html.update(currentVnode, newVnode);
+  			}
+    		
+
+    		update();
+
+    	</script>
+    </body>
+</html>
