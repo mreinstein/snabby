@@ -1,7 +1,9 @@
-
 # snabby
 
 Use Snabbdom with template strings
+
+[![Build Status](https://travis-ci.org/mreinstein/snabby.svg?branch=master)](https://travis-ci.org/mreinstein/snabby)
+
 
 ```js
 import html from 'snabby'
