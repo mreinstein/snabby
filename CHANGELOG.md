@@ -1,5 +1,9 @@
 # changelog
 
+## 3.1.0
+* only add/remove classes via containerquery when they actually change
+
+
 ## 3.0.0
 * add container queries
 * update dependencies

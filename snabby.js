@@ -1665,12 +1665,10 @@ const observer = new index$1(function (entries) {
 
 	    for (const breakpoint of Object.keys(breakpoints)) {
 	    	if (breakpoint === selectedClass) {
-	    		if (!entry.target.classList.contains(breakpoint)) {
-	    			console.log('adding class', breakpoint);
+	    		if (!entry.target.classList.contains(breakpoint))
 	    			entry.target.classList.add(breakpoint);
-	    		}
+
 	    	} else if (entry.target.classList.contains(breakpoint)) {
-	    		console.log('removing class', breakpoint);
 	    		entry.target.classList.remove(breakpoint);
 	    	}
 	    }
