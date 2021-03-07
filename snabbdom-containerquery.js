@@ -16,29 +16,30 @@ import ResizeObserver from 'https://cdn.skypack.dev/resize-observer-polyfill';
 const observer = new ResizeObserver(function (entries) {
 	for (const entry of entries) {
 		const breakpoints = JSON.parse(entry.target.dataset.breakpoints);
-		let prev;
 
 		// the rule iteration order depends on the order the object keys, and this varies from browser to browser.
 		// keep track of a high water mark so we always apply the widest matching rule regardless of iteration order.
 		let highWaterMark = 0;
 
+		let selectedClass = '';
+
 		for (const breakpoint of Object.keys(breakpoints)) {
 			const minWidth = breakpoints[breakpoint];
 	        if (entry.contentRect.width >= minWidth && minWidth > highWaterMark) {
-	        	entry.target.classList.add(breakpoint);
+	        	selectedClass = breakpoint;
 	        	highWaterMark = minWidth;
-
-	        	// exclusively match only a single breakpoint, so remove any other breakpoint
-	        	// classes that might have previously matched.
-	        	if (prev)
-	        		entry.target.classList.remove(prev);
-
-	        } else {
-	        	entry.target.classList.remove(breakpoint);
 	        }
+	    }
 
-	        prev = breakpoint;
-		}
+	    for (const breakpoint of Object.keys(breakpoints)) {
+	    	if (breakpoint === selectedClass) {
+	    		if (!entry.target.classList.contains(breakpoint))
+	    			entry.target.classList.add(breakpoint);
+
+	    	} else if (entry.target.classList.contains(breakpoint)) {
+	    		entry.target.classList.remove(breakpoint);
+	    	}
+	    }
 	}
 });
 

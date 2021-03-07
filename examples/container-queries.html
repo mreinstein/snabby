@@ -51,7 +51,7 @@
 
   			function view (model, update) {
   				//const attrs = (model.counter % 2 === 0) ? { 'data-breakpoints': '{ "BP1":400,"BP2":600,"BP3":1200 }' } : { }
-          const brkpts = (model.counter % 2 === 0) ? '{ "BP1":400,"BP2":600,"BP3":1200 }' : ''
+          const brkpts = (model.counter % 2 === 0) ? '{ "BP1": 400, "BP2": 600, "BP3": 1200 }' : ''
 
           return html`<main class="noop"
                             @attrs:data-breakpoints=${brkpts}

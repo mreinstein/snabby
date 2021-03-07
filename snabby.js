@@ -95,7 +95,7 @@ function createKeyToOldIdx(children, beginIdx, endIdx) {
   return map;
 }
 const hooks = ['create', 'update', 'remove', 'destroy', 'pre', 'post'];
-function init(modules, domApi) {
+function init$1(modules, domApi) {
   let i;
   let j;
   const cbs = {
@@ -453,7 +453,7 @@ function copyToThunk(vnode, thunk) {
   thunk.text = vnode.text;
   thunk.elm = vnode.elm;
 }
-function init$1(thunk) {
+function init(thunk) {
   const cur = thunk.data;
   const vnode = cur.fn.apply(undefined, cur.args);
   copyToThunk(vnode, thunk);
@@ -484,7 +484,7 @@ const thunk = function thunk(sel, key, fn, args) {
   }
   return h(sel, {
     key: key,
-    hook: { init: init$1, prepatch },
+    hook: { init, prepatch },
     fn: fn,
     args: args });
 
@@ -852,7 +852,7 @@ function create (modules, options={}) {
   }
 
   // create the snabbdom + hyperx functions
-  const patch = init(modules || [ ]);
+  const patch = init$1(modules || [ ]);
   
   // create snabby function
   const snabby = hyperx(createElement, { attrToProp: false });
@@ -1633,7 +1633,7 @@ forEach(function (method) {
     return (_a = observers.get(this))[method].apply(_a, arguments);
   };
 });
-var index = function () {
+var index$1 = function () {
   if (typeof global$1$1.ResizeObserver !== "undefined") {
     return global$1$1.ResizeObserver;
   }
@@ -1645,32 +1645,35 @@ var index = function () {
 
 // today it's more performant to have 1 resizeObserver observe multiple elements rather than 1 per element.
 // see https://groups.google.com/a/chromium.org/g/blink-dev/c/z6ienONUb5A/m/F5-VcUZtBAAJ
-const observer = new index(function (entries) {
+const observer = new index$1(function (entries) {
 	for (const entry of entries) {
 		const breakpoints = JSON.parse(entry.target.dataset.breakpoints);
-		let prev;
 
 		// the rule iteration order depends on the order the object keys, and this varies from browser to browser.
 		// keep track of a high water mark so we always apply the widest matching rule regardless of iteration order.
 		let highWaterMark = 0;
 
+		let selectedClass = '';
+
 		for (const breakpoint of Object.keys(breakpoints)) {
 			const minWidth = breakpoints[breakpoint];
 	        if (entry.contentRect.width >= minWidth && minWidth > highWaterMark) {
-	        	entry.target.classList.add(breakpoint);
+	        	selectedClass = breakpoint;
 	        	highWaterMark = minWidth;
-
-	        	// exclusively match only a single breakpoint, so remove any other breakpoint
-	        	// classes that might have previously matched.
-	        	if (prev)
-	        		entry.target.classList.remove(prev);
-
-	        } else {
-	        	entry.target.classList.remove(breakpoint);
 	        }
+	    }
 
-	        prev = breakpoint;
-		}
+	    for (const breakpoint of Object.keys(breakpoints)) {
+	    	if (breakpoint === selectedClass) {
+	    		if (!entry.target.classList.contains(breakpoint)) {
+	    			console.log('adding class', breakpoint);
+	    			entry.target.classList.add(breakpoint);
+	    		}
+	    	} else if (entry.target.classList.contains(breakpoint)) {
+	    		console.log('removing class', breakpoint);
+	    		entry.target.classList.remove(breakpoint);
+	    	}
+	    }
 	}
 });
 
@@ -1704,7 +1707,7 @@ var containerQueryModule = {
 // Inits with common modules out of the box
 
 
-var index$1 = create([
+var index = create([
     attributesModule,
     eventListenersModule,
     classModule,
@@ -1713,4 +1716,4 @@ var index$1 = create([
     containerQueryModule
 ]);
 
-export default index$1;
+export default index;
