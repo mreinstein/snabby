@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Snabby SVG</title>
+        <style>
+
+          body {
+            padding: 40px;
+          }
+
+        	/* demo related styles */
+        	main {
+        		cursor: pointer;
+        		padding: 40px;
+        		user-select: none;
+        		background-color: lightgreen;
+        	}
+
+        </style>
+    </head>
+    <body>
+    	<main></main>
+
+    	<script type="module">
+			import html from '../snabby.js'
+  
+
+  			let currentVnode = document.querySelector('main');
+
+  			const model = {
+  				counter: 0
+  			};
+
+
+  			function view (model, update) {
+                return html`<div>
+                    <svg width="150" height="100" viewBox="0 0 3 2">
+                      <use id="test"></use>
+                      <rect width="1" height="2" x="0" fill="#008d46"></rect>
+                      <use id="test"/>
+                      <rect width="1" height="2" x="0" fill="#008d46"/>
+                      <use id="test"></use>
+                    </svg>
+                </div>`;
+  			}
+
+
+  			function update () {
+  				const newVnode = view(model, update);
+  				currentVnode = html.update(currentVnode, newVnode);
+  			}
+    		
+
+    		update();
+
+    	</script>
+    </body>
+</html>
