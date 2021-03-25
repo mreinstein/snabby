@@ -1,5 +1,10 @@
 # changelog
 
+## 4.0.0
+* use a forked version of `hyperx`, which resolves a bug where some SVG tags throw an error. (see https://github.com/choojs/hyperx/pull/81)
+* update deps
+
+
 ## 3.1.0
 * only add/remove classes via containerquery when they actually change
 
