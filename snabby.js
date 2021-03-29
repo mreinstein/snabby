@@ -1728,7 +1728,7 @@ function update (oldVnode, vnode) {
 		} catch (er) {
 			// TODO: should invalid json in the data-breakpoints attribute throw an error?
 		}
-	} else {
+	} else if (vnode.elm instanceof Element) {
 		observer.unobserve(vnode.elm);
 	}
 }
