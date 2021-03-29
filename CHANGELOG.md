@@ -1,5 +1,9 @@
 # changelog
 
+## 4.1.2
+* only unobserve container queries on Elements
+
+
 ## 4.1.1
 * fix container query bug
 
