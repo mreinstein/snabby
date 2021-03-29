@@ -45,7 +45,7 @@ const observer = new ResizeObserver(function (entries) {
 
 
 function update (oldVnode, vnode) {
-	if (vnode.elm.dataset.breakpoints) {
+	if (vnode.elm.dataset && vnode.elm.dataset.breakpoints) {
 		try {
 			// ensure that the data attribute parses as valid json before we start observing it
 			JSON.parse(vnode.elm.dataset.breakpoints);
