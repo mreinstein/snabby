@@ -9,6 +9,9 @@ export default function create (modules, options={}) {
   const directive = options.directive || '@'
 
   function createElement (sel, input, content) {
+    if (sel === '!--')
+      return h('!', input.comment)
+
     if (content && content.length) {
       if (content.length === 1)
         content = content[0]
@@ -59,7 +62,7 @@ export default function create (modules, options={}) {
   const patch = init(modules || [ ])
   
   // create snabby function
-  const snabby = hyperx(createElement, { attrToProp: false })
+  const snabby = hyperx(createElement, { comments: true, attrToProp: false })
   
   // create yo-yo-like update function
   snabby.update = function update (dest, src) {
