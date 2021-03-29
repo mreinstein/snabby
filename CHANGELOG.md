@@ -1,5 +1,9 @@
 # changelog
 
+## 4.1.1
+* fix container query bug
+
+
 ## 4.1.0
 * support HTML comments
 
