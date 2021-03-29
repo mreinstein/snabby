@@ -1,5 +1,9 @@
 # changelog
 
+## 4.1.0
+* support HTML comments
+
+
 ## 4.0.0
 * use a forked version of `hyperx`, which resolves a bug where some SVG tags throw an error. (see https://github.com/choojs/hyperx/pull/81)
 * update deps
