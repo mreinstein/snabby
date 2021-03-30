@@ -1,5 +1,9 @@
 # changelog
 
+## 4.2.1
+* use fixed version of hyperx that works with svgs
+
+
 ## 4.2.0
 * update snabbdom to v3 (fixes #26)
 
