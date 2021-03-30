@@ -1,7 +1,5 @@
-import { init }  from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/init.js';
-import { thunk } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/thunk.js';
-import { h }     from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/h.js'; // helper function for creating vnodes
-import hyperx    from 'hyperx'
+import { init, thunk, h } from 'snabbdom';
+import hyperx             from 'hyperx'
 
 
 export default function create (modules, options={}) {

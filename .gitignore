@@ -1,7 +1,6 @@
 .DS_Store
 logs
 *.log
-npm-debug.log*
 pids
 *.pid
 *.seed
@@ -9,11 +8,7 @@ pids
 lib-cov
 coverage
 .nyc_output
-.grunt
 .lock-wscript
-build/Release
 node_modules
-jspm_packages
 .npm
 .node_repl_history
-examples/**/package-lock.json

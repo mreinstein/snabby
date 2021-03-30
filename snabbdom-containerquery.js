@@ -8,7 +8,7 @@
 // doesn't pollute global scope, and works in almost all in-use browsers, at the cost of a few kb.
 //
 // https://github.com/que-etc/resize-observer-polyfill
-import ResizeObserver from 'https://cdn.skypack.dev/resize-observer-polyfill';
+import ResizeObserver from 'resize-observer-polyfill';
 
 
 // today it's more performant to have 1 resizeObserver observe multiple elements rather than 1 per element.
