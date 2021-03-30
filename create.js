@@ -1,4 +1,4 @@
-import { init, thunk, h } from 'snabbdom';
+import { init, thunk, h } from 'snabbdom'
 import hyperx             from 'hyperx'
 
 
