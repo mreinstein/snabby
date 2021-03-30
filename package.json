@@ -24,7 +24,7 @@
     "tape": "^5.2.2"
   },
   "dependencies": {
-    "hyperx": "github:mreinstein/hyperx",
+    "hyperx-tmp": "^2.5.4",
     "resize-observer-polyfill": "^1.5.1",
     "snabbdom": "^3.0.0"
   },
