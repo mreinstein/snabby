@@ -1,5 +1,9 @@
 # changelog
 
+## 4.2.0
+* update snabbdom to v3 (fixes #26)
+
+
 ## 4.1.2
 * only unobserve container queries on Elements
 
