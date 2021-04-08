@@ -1,5 +1,9 @@
 # changelog
 
+## 4.2.2
+* bugfix: only unobserve Element nodes in container query plugin
+
+
 ## 4.2.1
 * use fixed version of hyperx that works with svgs
 
