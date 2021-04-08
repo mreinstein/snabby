@@ -60,7 +60,8 @@ function update (oldVnode, vnode) {
 
 
 function destroy (vnode/*, removeCallback*/) {
-	observer.unobserve(vnode.elm);
+	if (vnode.elm instanceof Element)
+		observer.unobserve(vnode.elm);
 }
 
 
