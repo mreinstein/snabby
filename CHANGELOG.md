@@ -1,5 +1,9 @@
 # changelog
 
+## 4.2.3
+* update snabby dep
+
+
 ## 4.2.2
 * bugfix: only unobserve Element nodes in container query plugin
 
