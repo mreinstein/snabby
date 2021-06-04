@@ -26,7 +26,7 @@
   "dependencies": {
     "hyperx-tmp": "^2.5.4",
     "resize-observer-polyfill": "^1.5.1",
-    "snabbdom": "^3.0.0"
+    "snabbdom": "^3.0.2"
   },
   "engines": {
     "node": ">=12.17"
