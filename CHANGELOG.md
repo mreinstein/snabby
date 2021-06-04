@@ -1,7 +1,11 @@
 # changelog
 
+## 4.2.4
+* update snabbdom dep
+
+
 ## 4.2.3
-* update snabby dep
+* update snabbdom dep
 
 
 ## 4.2.2
