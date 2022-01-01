@@ -1,5 +1,9 @@
 # changelog
 
+## 4.2.5
+* update hyperx dep to fix inline styles that include a direct descendant css selector (see https://github.com/choojs/hyperx/issues/82)
+
+
 ## 4.2.4
 * update snabbdom dep
 
