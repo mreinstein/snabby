@@ -2,7 +2,7 @@
 
 Use Snabbdom with template strings
 
-[![Build Status](https://travis-ci.org/mreinstein/snabby.svg?branch=master)](https://travis-ci.org/mreinstein/snabby)
+![tests](https://github.com/mreinstein/snabby/actions/workflows/main.yml/badge.svg)
 
 
 ```js
