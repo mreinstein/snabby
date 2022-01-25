@@ -95,6 +95,24 @@ html`<div :click=${fn}>`
 Directives work with any module that makes use of `node.data`.  For example `@props:href` turns into `node.data.props.href`.
 
 
+### Delayed Style properties
+
+Snabbdom offers [`delayed style properties`](https://github.com/snabbdom/snabbdom#delayed-properties) which are set after the next frame.
+
+This makes it easy to declaratively animate the entry of elements.
+
+The `all` value of `transition-property` is not supported in snabbdom or snabby.
+
+usage:
+
+```javascript
+html```<span @style:transition="opacity 1s ease"
+             @style:delayed=${ { opacity: '0' } }>
+         hello, world!!
+       </span>```
+```
+
+
 ### `snabby.update(target, node)`
 
 If you want to put a node on the DOM, or push updates on it (i.e. from events), you use this function.
