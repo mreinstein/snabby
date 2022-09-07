@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "browser-env": "^3.3.0",
-    "serve": "^13.0.2",
+    "serve": "^14.0.0",
     "tape": "^5.2.2"
   },
   "dependencies": {
