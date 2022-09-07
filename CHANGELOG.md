@@ -1,5 +1,10 @@
 # changelog
 
+## 5.0.0
+* update deps
+* drop embedded ResizeObserver; it's now present in >= 94% of global web browsers. fixes #28
+
+
 ## 4.2.5
 * update hyperx dep to fix inline styles that include a direct descendant css selector (see https://github.com/choojs/hyperx/issues/82)
 
