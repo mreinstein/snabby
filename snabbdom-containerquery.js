@@ -1,15 +1,5 @@
 // inspired by https://philipwalton.com/articles/responsive-components-a-solution-to-the-container-queries-problem/
 
-// ResizeObserver support is pretty good, but about 10% of the browsers still lack it.
-// in some cases, snabbdom is used as a 3rd party module that gets used on websites,
-// and it's unacceptable in some cases to install global polyfills.
-//
-// for now we inline it into the plugin as a ponyfill so that it's always available,
-// doesn't pollute global scope, and works in almost all in-use browsers, at the cost of a few kb.
-//
-// https://github.com/que-etc/resize-observer-polyfill
-import ResizeObserver from 'resize-observer-polyfill';
-
 
 // today it's more performant to have 1 resizeObserver observe multiple elements rather than 1 per element.
 // see https://groups.google.com/a/chromium.org/g/blink-dev/c/z6ienONUb5A/m/F5-VcUZtBAAJ

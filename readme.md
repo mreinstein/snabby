@@ -67,7 +67,7 @@ html`<div data-breakpoints='{ "BP1": 400, "BP2": 600, "BP3": 1200 }'> Some conte
 
 If the div is 700px wide, it will have `BP2` in it's classlist. Only the class with the highest matching rule will be added, regardless of what order the rules are declared in.
 
-Internally, this is implemented with a ResizeObserver, and that is ponyfilled to support older browsers.
+Internally, this is implemented with a ResizeObserver. As of version 5, we no longer bundle a ResizeObserver ponyfill with snabby. You should polyfill ResizeObserver yourself if you plan on using snabby on very old browsers.   https://www.npmjs.com/package/resize-observer-polyfill
 
 
 ### Directives
