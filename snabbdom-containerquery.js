@@ -3,7 +3,7 @@
 
 // today it's more performant to have 1 resizeObserver observe multiple elements rather than 1 per element.
 // see https://groups.google.com/a/chromium.org/g/blink-dev/c/z6ienONUb5A/m/F5-VcUZtBAAJ
-const observer = new ResizeObserver(function (entries) {
+const observer = new window.ResizeObserver(function (entries) {
 	for (const entry of entries) {
 		const breakpoints = JSON.parse(entry.target.dataset.breakpoints);
 

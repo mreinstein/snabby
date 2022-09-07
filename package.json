@@ -16,10 +16,11 @@
     "examples": "serve .",
     "predeploy": "npm run test",
     "prepublishOnly": "npm run predeploy",
-    "test": "node test"
+    "test": "node test/index.js"
   },
   "devDependencies": {
     "browser-env": "^3.3.0",
+    "resize-observer-polyfill": "^1.5.1",
     "serve": "^14.0.0",
     "tape": "^5.2.2"
   },

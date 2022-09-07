@@ -1,10 +1,6 @@
-import browserEnv from 'browser-env'
-import snabby     from './index.js'
+import snabby     from '../index.js'
 import { h }      from 'snabbdom' // helper function for creating vnodes
 import test       from 'tape'
-
-
-browserEnv()
 
 
 test('creation', function (t) {
