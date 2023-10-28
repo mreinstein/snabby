@@ -53,23 +53,6 @@ let node2 = greet('World')
 You have all the [modules documented by Snabbdom](https://github.com/snabbdom/snabbdom#modules-documentation) loaded by default.  See [Directives](#directives) for how to use modules, and [`snabby/create`](#snabby_create) for loading custom modules
 
 
-### Container Queries
-
-Container Queries are one of the most requested features of all time in CSS. It enables people that want to build responsive 
-components by allowing classes to be attached to DOM elements based on their width, as opposed to `@media` queries, which only
-operate on the viewport width.
-
-In snabby you can specify a series of rules for setting classes on an element based on minimum width:
-
-```js
-html`<div data-breakpoints='{ "BP1": 400, "BP2": 600, "BP3": 1200 }'> Some content here </div>`
-```
-
-If the div is 700px wide, it will have `BP2` in it's classlist. Only the class with the highest matching rule will be added, regardless of what order the rules are declared in.
-
-Internally, this is implemented with a ResizeObserver. As of version 5, we no longer bundle a ResizeObserver ponyfill with snabby. You should polyfill ResizeObserver yourself if you plan on using snabby on very old browsers.   https://www.npmjs.com/package/resize-observer-polyfill
-
-
 ### Directives
 
 Directives are attributes that begin with `@`, and let you interact with Snabbdom modules.  In general, the form is `@<name>:[prop]:...`.
@@ -151,13 +134,12 @@ Create a `snabby` tag function with your own modules.
 Here is an equivalent to `snabby` for example:
 
 ```js
-import create from './create.js'
-import { attributesModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/attributes.js';
-import { classModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/class.js';
-import { propsModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/props.js';
-import { styleModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/style.js';
-import { eventListenersModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@2.1.0/build/package/modules/eventlisteners.js';
-import containerQueryModule     from './snabbdom-containerquery.js';
+import create                   from './create.js'
+import { attributesModule }     from 'https://cdn.jsdelivr.net/npm/snabbdom@3/build/package/modules/attributes.js';
+import { classModule }          from 'https://cdn.jsdelivr.net/npm/snabbdom@3/build/package/modules/class.js';
+import { propsModule }          from 'https://cdn.jsdelivr.net/npm/snabbdom@3/build/package/modules/props.js';
+import { styleModule }          from 'https://cdn.jsdelivr.net/npm/snabbdom@3/build/package/modules/style.js';
+import { eventListenersModule } from 'https://cdn.jsdelivr.net/npm/snabbdom@3/build/package/modules/eventlisteners.js';
 
 
 const html = create([
@@ -165,8 +147,7 @@ const html = create([
     eventListenersModule,
     classModule,
     propsModule,
-    styleModule,
-    containerQueryModule
+    styleModule
 ])
 
 ```

@@ -1,6 +1,11 @@
-import snabby     from '../index.js'
-import { h }      from 'snabbdom' // helper function for creating vnodes
-import test       from 'tape'
+import snabby from '../index.js'
+import { h }  from 'snabbdom' // helper function for creating vnodes
+import test   from 'tape'
+import { Window } from 'happy-dom'
+
+
+global.window = new Window()
+global.document = window.document
 
 
 test('creation', function (t) {
