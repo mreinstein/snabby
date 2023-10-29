@@ -1,5 +1,10 @@
 # changelog
 
+## 6.0.0
+* remove built-in container queries.  You should use native css container queries now. Fixes #32
+* support boolean attributes. Fixes #31
+
+
 ## 5.0.0
 * update deps
 * drop embedded ResizeObserver; it's now present in >= 94% of global web browsers. fixes #28
