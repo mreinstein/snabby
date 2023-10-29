@@ -1,5 +1,6 @@
 import { init, thunk, h } from 'snabbdom'
 import hyperx             from 'hyperx-tmp'
+import isBoolAttribute    from 'is-boolean-attribute'
 
 
 export default function create (modules, options={}) {
@@ -26,12 +27,14 @@ export default function create (modules, options={}) {
     const data = { }
     for (let i = 0, max = names.length; max > i; i++) {
       const name = names[i]
-      if (input[name] === 'false')
-        input[name] = false
+      
+      const isDirective = name.indexOf(directive) === 0
 
-      // directive attributes
-      if (name.indexOf(directive) === 0) {
+      if (isDirective) {
         const parts = name.slice(1).split(':')
+        if ((parts[0] !== 'attrs' || isBoolAttribute(parts[1])) && input[name] === 'false')
+          input[name] = false
+
         let previous = data
         for (let p = 0, pmax = parts.length, last = pmax - 1; p < pmax; p++) {
           const part = parts[p]
@@ -42,17 +45,19 @@ export default function create (modules, options={}) {
           else
             previous = previous[part]
         }
-      }
 
-      // put all other attributes into `data.attrs`
-      else {
+      } else {
+        // put all other attributes into `data.attrs`
+        if (isBoolAttribute(name) && input[name] === 'false')
+          input[name] = false
+
         if (!data.attrs)
           data.attrs = { }
         data.attrs[name] = input[name]
       }
     }
 
-    // return vnode:
+    // return vnode
     return h(sel, data, content)
   }
 

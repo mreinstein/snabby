@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "hyperx-tmp": "^2.5.4",
+    "is-boolean-attribute": "^0.0.1",
     "snabbdom": "^3.0.3"
   },
   "engines": {

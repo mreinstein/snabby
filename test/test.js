@@ -64,6 +64,102 @@ test('class attribute', function (t) {
 })
 
 
+test('boolean attribute', function (t) {
+  t.plan(8)
+
+  t.is(
+    snabby`<img disabled="false" />`.data.attrs.disabled,
+    false,
+    'sets false value for boolean attributes'
+  )
+
+  t.is(
+    snabby`<img disabled="true" />`.data.attrs.disabled,
+    'true',
+    'sets value for boolean attributes'
+  )
+
+  t.is(
+    snabby`<img disabled />`.data.attrs.disabled,
+    'disabled',
+    'sets value for boolean attributes'
+  )
+
+
+  t.is(
+    snabby`<img @attrs:disabled=${false} />`.data.attrs.disabled,
+    false,
+    'preserves value for boolean attributes in @attrs: directives'
+  )
+
+  t.is(
+    snabby`<img @attrs:disabled=${'false'} />`.data.attrs.disabled,
+    false,
+    'preserves value for boolean attributes in @attrs: directives'
+  )
+
+  t.is(
+    snabby`<img @attrs:disabled=${'disabled'} />`.data.attrs.disabled,
+    'disabled',
+    'preserves value for boolean attributes in @attrs: directives'
+  )
+
+
+  t.is(
+    snabby`<img @attrs:disabled=${true} />`.data.attrs.disabled,
+    'true',
+    'preserves value for boolean attributes in @attrs: directives'
+  )
+
+  t.is(
+    snabby`<img @attrs:disabled=${'true'} />`.data.attrs.disabled,
+    'true',
+    'preserves value for boolean attributes in @attrs: directives'
+  )
+})
+
+
+test('non-boolean attribute', function (t) {
+  t.plan(6)
+
+  t.is(
+    snabby`<img draggable="false" />`.data.attrs.draggable,
+    'false',
+    'preserves "false" value for non-boolean attributes'
+  )
+
+  t.is(
+    snabby`<img draggable="true" />`.data.attrs.draggable,
+    'true',
+    'preserves "true" value for non-boolean attributes'
+  )
+
+  t.is(
+    snabby`<img @attrs:draggable=${false} />`.data.attrs.draggable,
+    'false',
+    'preserves value for non-boolean attributes in @attrs: directives'
+  )
+
+  t.is(
+    snabby`<img @attrs:draggable=${'false'} />`.data.attrs.draggable,
+    'false',
+    'preserves value for non-boolean attributes in @attrs: directives'
+  )
+
+  t.is(
+    snabby`<img @attrs:draggable=${true} />`.data.attrs.draggable,
+    'true',
+    'preserves value for non-boolean attributes in @attrs: directives'
+  )
+
+  t.is(
+    snabby`<img @attrs:draggable=${'true'} />`.data.attrs.draggable,
+    'true',
+    'preserves value for non-boolean attributes in @attrs: directives'
+  )
+})
+
+
 test('non-string attribute value', function (t) {
   t.plan(1)
   t.is(
@@ -71,6 +167,35 @@ test('non-string attribute value', function (t) {
     false,
     'sets a prop to the real false value, not a string'
   )
+})
+
+test('props', function (t) {
+  t.plan(4)
+
+  t.is(
+    snabby`<input @props:enabled=${false}>`.data.props.enabled,
+    false,
+    'sets a prop to the real false value, not a string'
+  )
+
+  t.is(
+    snabby`<input @props:enabled=${true}>`.data.props.enabled,
+    'true',
+    'sets a prop to the real false value, not a string'
+  )
+
+  t.is(
+    snabby`<input @props:derp=${'flerp'}>`.data.props.derp,
+    'flerp',
+    'sets a prop to a string value'
+  )
+
+  t.same(
+    snabby`<input @props:cool=${ { a: true, b: 345 } }>`.data.props.cool,
+    { a: true, b: 345 },
+    'sets a prop to an object value'
+  )
+
 })
 
 
