@@ -24,7 +24,7 @@
     "tape": "^5.2.2"
   },
   "dependencies": {
-    "hyperx-tmp": "^2.5.4",
+    "hyperx": "^3.0.0",
     "is-boolean-attribute": "^0.0.1",
     "snabbdom": "^3.0.3"
   },

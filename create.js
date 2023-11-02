@@ -1,5 +1,5 @@
 import { init, thunk, h } from 'snabbdom'
-import hyperx             from 'hyperx-tmp'
+import hyperx             from 'hyperx'
 import isBoolAttribute    from 'is-boolean-attribute'
 
 
