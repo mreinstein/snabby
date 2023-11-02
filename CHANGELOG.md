@@ -1,5 +1,9 @@
 # changelog
 
+## 6.1.0
+* replace hyperx-tmp with hyperx now that the module has necessary bug fixes published
+
+
 ## 6.0.0
 * remove built-in container queries.  You should use native css container queries now. Fixes #32
 * support boolean attributes. Fixes #31
