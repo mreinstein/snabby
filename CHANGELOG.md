@@ -1,5 +1,9 @@
 # changelog
 
+## 5.0.1
+* update hyperx-tmp to hyperx since the original module has been fixed
+
+
 ## 5.0.0
 * update deps
 * drop embedded ResizeObserver; it's now present in >= 94% of global web browsers. fixes #28
