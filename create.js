@@ -1,5 +1,5 @@
 import { init, thunk, h } from 'snabbdom'
-import hyperx             from 'hyperx-tmp'
+import hyperx             from 'hyperx'
 
 
 export default function create (modules, options={}) {

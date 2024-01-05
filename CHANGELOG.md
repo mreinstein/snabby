@@ -1,5 +1,9 @@
 # changelog
 
+## 4.2.6
+* update hyperx-tmp to hyperx since the fixes have been accepted and published
+
+
 ## 4.2.5
 * update hyperx dep to fix inline styles that include a direct descendant css selector (see https://github.com/choojs/hyperx/issues/82)
 
