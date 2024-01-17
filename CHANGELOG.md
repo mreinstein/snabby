@@ -1,5 +1,9 @@
 # changelog
 
+## 6.1.1
+* update deps
+
+
 ## 6.1.0
 * replace hyperx-tmp with hyperx now that the module has necessary bug fixes published
 
