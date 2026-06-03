@@ -1,5 +1,11 @@
 # changelog
 
+## 7.0.0
+* bump minimum node to v20
+* update deps
+* use node's builtin test runner
+
+
 ## 6.1.1
 * update deps
 
