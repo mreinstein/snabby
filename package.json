@@ -15,13 +15,11 @@
     "examples": "serve .",
     "predeploy": "npm run test",
     "prepublishOnly": "npm run predeploy",
-    "test": "node test/test.js"
+    "test": "node --test test/test.js"
   },
   "devDependencies": {
-    "browser-env": "^3.3.0",
-    "happy-dom": "^13.0.0",
-    "serve": "^14.0.0",
-    "tape": "^5.2.2"
+    "happy-dom": "^20.9.0",
+    "serve": "^14.0.0"
   },
   "dependencies": {
     "hyperx": "^3.0.0",
@@ -29,7 +27,7 @@
     "snabbdom": "^3.0.3"
   },
   "engines": {
-    "node": ">=12.17"
+    "node": ">=20"
   },
   "homepage": "https://github.com/mreinstein/snabby",
   "bugs": {
